@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   describe "creation" do
     before do
       @user = User.create(email: "test@test.com", password: "testing1234", password_confirmation: "testing1234",
-      first_name: "jose", last_name:"Ramirez")
+        first_name: "jose", last_name:"Ramirez")
     end
 
     it "can be created" do

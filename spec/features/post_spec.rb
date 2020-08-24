@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe 'navigate' do
   before do
-    @user = User.create(email: "test@test.com", password: "testing1234",
-      password_confirmation: "testing1234",first_name: "jose", last_name:"Ramirez")
+    @user = FactoryGirl.create(:user)
     login_as(@user, :scope => :user)
     visit new_post_path
   end
@@ -22,10 +21,10 @@ describe 'navigate' do
     end
 
     it 'has list of posts' do
-      post1 = Post.create(date: Date.today, rationale: "Post1", user_id: @user.id)
-      post2 = Post.create(date: Date.today, rationale: "Post2", user_id: @user.id)
+      post1 = FactoryGirl.create(:post)
+      post2 = FactoryGirl.build_stubbed(:second_post)
       visit posts_path
-      expect(page).to have_content(/Post1|Post2/)
+      expect(page).to have_content(/rationale/)
     end
   end
 

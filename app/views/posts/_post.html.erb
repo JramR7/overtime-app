@@ -1,14 +1,17 @@
 <tr>
   <td>
-    <%=post.id%>
+    <%= post.id %>
   </td>
   <td>
-    <%=post.date%>
+    <%= post.date %>
   </td>
   <td>
-    <%=post.user.full_name%>
+    <%= post.user.full_name %>
   </td>
   <td>
-    <%=truncate(post.rationale)%>
+    <%= truncate(post.rationale) %>
+  </td>
+  <td>
+    <%= link_to 'Edit', edit_post_path(post), id: "edit_#{post.id}" %>
   </td>
 </tr>

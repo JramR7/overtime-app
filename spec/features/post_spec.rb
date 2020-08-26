@@ -35,7 +35,6 @@ describe 'navigate' do
       click_link("new_post_from_nav")
       expect(page.status_code).to eq(200)
     end
-    
   end
 
   describe 'creation' do
@@ -80,6 +79,16 @@ describe 'navigate' do
       click_on 'Save'
 
       expect(page).to have_content("Edited content")
+    end
+  end
+
+  describe 'delete post' do
+    it 'can be deleted' do
+      @post = FactoryGirl.create(:post)
+      visit posts_path
+      
+      click_link("delete_#{@post.id}")
+      expect(page.status_code).to eq(200)
     end
   end
 end

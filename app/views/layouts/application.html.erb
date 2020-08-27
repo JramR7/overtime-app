@@ -11,15 +11,18 @@
 </head>
 
 <body>
-
   <div class="container">
     <div class="row">
+      <%= js add_gritter(flash[:notice], title: "Overtime app", sticky: false, class_name: "custom_gritter") %>
+
       <div class="col-md-12">
+
         <%= render 'shared/nav' %>
         <%= yield %>
       </div>
     </div>
   </div>
+
 
 </body>
 

@@ -9,11 +9,11 @@ class PostDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
-    id: Field::Number,
-    date: Field::Date,
-    rationale: Field::Text,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    id: Field::Number.with_options(searchable: false),
+    date: Field::Date.with_options(searchable: true),
+    rationale: Field::Text.with_options(searchable: true),
+    created_at: Field::DateTime.with_options(searchable: false),
+    updated_at: Field::DateTime.with_options(searchable: false),
   }.freeze
 
   # COLLECTION_ATTRIBUTES

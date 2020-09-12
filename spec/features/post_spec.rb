@@ -11,19 +11,31 @@ describe 'navigate' do
       visit posts_path
     end
 
-  	it 'can be reached successfully' do
-  		expect(page.status_code).to eq(200)
-  	end
+    it 'can be reached successfully' do
+      expect(page.status_code).to eq(200)
+    end
 
-  	it 'has a title of Posts' do
-  		expect(page).to have_content(/Posts/)
-  	end
+    it 'has a title of Posts' do
+      expect(page).to have_content(/Posts/)
+    end
 
     it 'has a list of posts' do
       post1 = FactoryGirl.create(:post)
       post2 = FactoryGirl.build_stubbed(:second_post)
       visit posts_path
       expect(page).to have_content(/Rationale|content/)
+    end
+
+    it 'has a scope so only post creators can see their posts' do
+      post1 = Post.create(date: Date.today, rationale: 'asdf', user_id: @user.id)
+      post2 = Post.create(date: Date.today, rationale: 'asdf', user_id: @user.id)
+
+      other_user = User.create(first_name: 'other', 
+        last_name: 'user', email: 'other@user.com', 
+        password: "asdfasdf", password_confirmation: "asdfasdf")
+      post_from_other_user = Post.create(date: Date.today, rationale: 'other user post', user_id: other_user.id)
+
+      expect(page).to_not have_content(/other user post/)
     end
   end
 
@@ -37,21 +49,21 @@ describe 'navigate' do
   end
 
   describe 'creation' do
-  	before do
-  		visit new_post_path
-  	end
+    before do
+      visit new_post_path
+    end
 
-  	it 'has a new form that can be reached' do
-  		expect(page.status_code).to eq(200)
-  	end
+    it 'has a new form that can be reached' do
+      expect(page.status_code).to eq(200)
+    end
 
-  	it 'can be created from new form page' do
+    it 'can be created from new form page' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Some rationale"
       click_on "Save"
 
       expect(page).to have_content("Some rationale")
-  	end
+    end
 
     it 'will have a user associated it' do
       fill_in 'post[date]', with: Date.today
@@ -93,6 +105,7 @@ describe 'navigate' do
   describe 'delete post' do
     it 'can be deleted' do
       @post = FactoryGirl.create(:post)
+      @post.update(user_id: @user.id)
       visit posts_path
       
       click_link("delete_#{@post.id}")

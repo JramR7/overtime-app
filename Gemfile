@@ -23,7 +23,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
-  gem 'capybara'
+  gem 'capybara', '3.10.1'
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.9'
 end

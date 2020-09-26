@@ -36,7 +36,7 @@ describe 'navigate' do
                                 email: 'other@user.com', 
                                 password: "asdfasdf", 
                                 password_confirmation: "asdfasdf",
-                                phone: 555334)
+                                phone: "1234567891")
       post_from_other_user = Post.create(date: Date.today, rationale: 'other user post', user_id: other_user.id, overtime_request: 3.5)
 
       expect(page).to_not have_content(/other user post/)

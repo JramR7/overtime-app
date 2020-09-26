@@ -4,14 +4,14 @@
                     password_confirmation: "testing1234",
                     first_name: "Jon",
                     last_name: "Snow",
-                    phone: 12058983819)
+                    phone: 1234567891)
 
 AdminUser.create(email: "admin@test.com",
                 password: "testing1234",
                 password_confirmation: "testing1234",
                 first_name: "Admin",
                 last_name: "Istrator",
-                phone: 12058983819)
+                phone: 1234567891)
 
 puts "1 User created"
 

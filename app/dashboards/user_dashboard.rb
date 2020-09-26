@@ -13,6 +13,7 @@ class UserDashboard < Administrate::BaseDashboard
     last_sign_in_ip: Field::String.with_options(searchable: false),
     first_name: Field::String.with_options(searchable: true),
     last_name: Field::String.with_options(searchable: true),
+    phone: Field::String.with_options(searchable: false),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
     type: Field::String,
@@ -24,6 +25,7 @@ class UserDashboard < Administrate::BaseDashboard
     :email,
     :first_name,
     :last_name,
+    :phone,
     :type
   ].freeze
 
@@ -38,6 +40,7 @@ class UserDashboard < Administrate::BaseDashboard
     :last_sign_in_ip,
     :first_name,
     :last_name,
+    :phone,
     :created_at,
     :updated_at,
     :type,
@@ -48,5 +51,6 @@ class UserDashboard < Administrate::BaseDashboard
     :password,
     :first_name,
     :last_name,
+    :phone,
   ].freeze
 end

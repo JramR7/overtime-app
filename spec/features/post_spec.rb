@@ -32,8 +32,11 @@ describe 'navigate' do
 
     it 'has a scope so only post creators can see their posts' do
       other_user = User.create(first_name: 'other', 
-        last_name: 'user', email: 'other@user.com', 
-        password: "asdfasdf", password_confirmation: "asdfasdf")
+                                last_name: 'user',
+                                email: 'other@user.com', 
+                                password: "asdfasdf", 
+                                password_confirmation: "asdfasdf",
+                                phone: 555334)
       post_from_other_user = Post.create(date: Date.today, rationale: 'other user post', user_id: other_user.id, overtime_request: 3.5)
 
       expect(page).to_not have_content(/other user post/)

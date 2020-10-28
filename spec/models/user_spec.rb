@@ -31,10 +31,6 @@ RSpec.describe User, type: :model do
       @user.phone = "myphonenum"
       expect(@user).to_not be_valid
     end
-
-    xit "require the phone attr to only have 10 characters" do
-
-    end
   end
 
   describe "custom name methods" do
